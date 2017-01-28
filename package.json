@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/anvandarnamnet/sthlm-metro/issues"
   },
-  "homepage": "https://github.com/anvandarnamnet/sthlm-metro#readme"
+  "homepage": "https://github.com/anvandarnamnet/sthlm-metro#readme",
+  "dependencies": {
+    "restify": "^4.3.0"
+  }
 }
