@@ -13,6 +13,7 @@ var stationData = require('./StationData');
 
 
 var stationIds = stationData.getIds(18);
+var stationLookUp = stationData.getStationLookup();
 var stationToUpdate = stationIds[0];
 var nextUpd = 0;
 setInterval(getSubwayData, 3000);
@@ -32,7 +33,7 @@ function getSubwayData(){
                 if(metros[i].JourneyDirection == 1 && metros[i].LineNumber == "18"){
                     var train = {
                         id: metros[i].JourneyNumber,
-                        nextStation: stationIds[nextUpd],
+                        nextStation: stationToUpdate[stationIds[nextUpd]],
                         timeToNextStation: metros[i].DisplayTime
                     }
                     lookupByTrainID[metros[i].JourneyNumber] = train;
