@@ -21,6 +21,7 @@ setInterval(getSubwayData, 3000);
 
 function getSubwayData(){
     var relevantData = [];
+    var lookupByTrainID = {};
     console.log([stationIds[nextUpd]]);
 
     // source file is iso-8859-15 but it is converted to utf-8 automatically
@@ -32,8 +33,15 @@ function getSubwayData(){
             ///console.log(metros.length);
             for(var i = 0; i < metros.length; i++){
                 if(metros[i].JourneyDirection != 1 && metros[i].LineNumber == "18"){
-                    console.log("WHOOO!");
-
+                    if (lookupByTrainID[metros.JourneyNumber] == null) {
+                        console.log("NOT FOUND!");
+                        var train = {
+                            id: "",
+                            previousStation: "",
+                            nextStation: "",
+                            timeToNextStation: "",
+                        }
+                    }
                 }
                 if(metros[i].LineNumber == "18"){
                 }
@@ -46,8 +54,5 @@ function getSubwayData(){
         }catch(err){
             console.log(err);
         }
-
-
-
     });
 }
