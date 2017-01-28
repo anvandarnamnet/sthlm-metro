@@ -30,23 +30,21 @@ function getSubwayData(){
             ///console.log(metros.length);
             for(var i = 0; i < metros.length; i++){
                 if(metros[i].JourneyDirection == 1 && metros[i].LineNumber == "18"){
-                    if (lookupByTrainID[metros[i].JourneyNumber] == null) {
-                        var train = {
-                            id: metros[i].JourneyNumber,
-                            nextStation: stationIds[nextUpd],
-                            timeToNextStation: metros[i].DisplayTime
-                        }
-                        lookupByTrainID[metros[i].JourneyNumber] = train;
-
+                    var train = {
+                        id: metros[i].JourneyNumber,
+                        nextStation: stationIds[nextUpd],
+                        timeToNextStation: metros[i].DisplayTime
                     }
+                    lookupByTrainID[metros[i].JourneyNumber] = train;
+                    console.log("--------------------------------------")
                 }
 
             }
 
-
             nextUpd++;
             if(nextUpd >= stationIds.length){
                 nextUpd = 0;
+                console.log("END END END END END END")
             }
 
         }catch(err){
