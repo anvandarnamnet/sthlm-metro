@@ -16,14 +16,12 @@ var stationIds = stationData.getIds(18);
 var stationToUpdate = stationIds[0];
 var nextUpd = 0;
 setInterval(getSubwayData, 3000);
-
+var lookupByTrainID = {};
 
 
 function getSubwayData(){
     var relevantData = [];
-    var lookupByTrainID = {};
-    console.log([stationIds[nextUpd]]);
-
+    console.log(lookupByTrainID)
     // source file is iso-8859-15 but it is converted to utf-8 automatically
     fetchUrl(baseUrl + stopId + stationIds[nextUpd] + timeinterval + 58, function(error, meta, body){
 
@@ -32,20 +30,20 @@ function getSubwayData(){
             var metros = JSON.parse(body).ResponseData.Metros;
             ///console.log(metros.length);
             for(var i = 0; i < metros.length; i++){
-                if(metros[i].JourneyDirection != 1 && metros[i].LineNumber == "18"){
-                    if (lookupByTrainID[metros.JourneyNumber] == null) {
-                        console.log("NOT FOUND!");
+                if(metros[i].JourneyDirection == 1 && metros[i].LineNumber == "18"){
+                    if (lookupByTrainID[metros[i].JourneyNumber] == null) {
                         var train = {
-                            id: "",
-                            previousStation: "",
-                            nextStation: "",
-                            timeToNextStation: "",
+                            id: metros[i].JourneyNumber
+                            nextStation:
                         }
+                        lookupByTrainID[metros[i].JourneyNumber] = train;
+
                     }
                 }
-                if(metros[i].LineNumber == "18"){
-                }
+
             }
+
+
             nextUpd++;
             if(nextUpd >= stationIds.length){
                 nextUpd = 0;
