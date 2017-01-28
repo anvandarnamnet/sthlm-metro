@@ -288,6 +288,13 @@ module.exports.getIds = function(line){
 
 }
 
+module.exports.getStationLookup = function () {
+    var lookup = {};
+    for (var object in data.a18) {
+        lookup[object.id] = object.stationsName;
+    }
+    return lookup;
+}
 
 function getListById(line){
     if(line == "18"){
