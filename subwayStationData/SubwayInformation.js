@@ -22,7 +22,6 @@ var lookupByTrainID = {};
 function getSubwayData(){
     var relevantData = [];
     console.log(lookupByTrainID)
-    // source file is iso-8859-15 but it is converted to utf-8 automatically
     fetchUrl(baseUrl + stopId + stationIds[nextUpd] + timeinterval + 58, function(error, meta, body){
 
 
@@ -33,8 +32,9 @@ function getSubwayData(){
                 if(metros[i].JourneyDirection == 1 && metros[i].LineNumber == "18"){
                     if (lookupByTrainID[metros[i].JourneyNumber] == null) {
                         var train = {
-                            id: metros[i].JourneyNumber
-                            nextStation:
+                            id: metros[i].JourneyNumber,
+                            nextStation: stationIds[nextUpd],
+                            timeToNextStation: metros[i].DisplayTime
                         }
                         lookupByTrainID[metros[i].JourneyNumber] = train;
 
