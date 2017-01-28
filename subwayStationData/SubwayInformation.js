@@ -25,19 +25,17 @@ function getSubwayData(){
 
     // source file is iso-8859-15 but it is converted to utf-8 automatically
     fetchUrl(baseUrl + stopId + stationIds[nextUpd] + timeinterval + 58, function(error, meta, body){
-        //console.log(body.toString());
 
-        console.log("K"+error);
 
         try{
-            console.log("OKAY!")
             var metros = JSON.parse(body).ResponseData.Metros;
-            for(var i = 0; i < metros.size; i++){
-                if(metros[i].JourneyDirection != 1){
-                    continue;
-                }
-                if(metros[i].LineNumber == 18){
+            ///console.log(metros.length);
+            for(var i = 0; i < metros.length; i++){
+                if(metros[i].JourneyDirection != 1 && metros[i].LineNumber == "18"){
                     console.log("WHOOO!");
+
+                }
+                if(metros[i].LineNumber == "18"){
                 }
             }
             nextUpd++;
